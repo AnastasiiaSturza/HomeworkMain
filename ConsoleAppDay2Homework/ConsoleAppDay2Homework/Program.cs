@@ -30,9 +30,11 @@ Console.WriteLine("max  : " + Math.Max(numb6, numb7));
 DateTime NewYear = new DateTime(2023, 12, 31 );
 DateTime today = DateTime.Now;
 TimeSpan toNewYear = NewYear - today;
+double tsTo = toNewYear.TotalDays;
 DateTime LastNewYear = new DateTime(2022,12, 31);
 TimeSpan afterNewYear = today - LastNewYear;
+double tsAfter = afterNewYear.TotalDays;
 
-Console.WriteLine($" to new year : {toNewYear} and after {afterNewYear}");
+Console.WriteLine($" to new year : {Math.Round(tsTo)} and after {Math.Round(tsAfter)}");
 
 
