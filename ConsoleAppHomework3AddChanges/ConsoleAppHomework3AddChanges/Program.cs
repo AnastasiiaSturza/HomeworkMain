@@ -97,7 +97,8 @@ while (k2 <= 10);
 Console.WriteLine("sum8: " + sum8);*/
 
 // readLine
-using System.ComponentModel.Design;
+
+/*using System.ComponentModel.Design;
 
 int x, y;
 Console.Write("Add value x: ");
@@ -107,19 +108,24 @@ Console.Write("Add value y: ");
 bool isResultY = int.TryParse(Console.ReadLine(), out y);
 while (!isResultX)
 {
-    Console.WriteLine("Value X is incorrect");
-    break;
+    
+     Console.WriteLine("Value X is incorrect");
+     while (isResultY)
+     { 
+        continue;
+     }
+    
 }
 
 while (!isResultY)
 { Console.WriteLine("Valye Y is incorrect");
-    break;
+    while (!isResultY)
+    { 
+        continue;
+       
+    }
 }
-while (!isResultX || !isResultY)
-{
-    Console.WriteLine("Input is incorrect");
-    break;
-}
+
 int sumXY = 0;
 
 if (isResultX && isResultY)
@@ -132,10 +138,7 @@ if (isResultX && isResultY)
     Console.WriteLine("sumXY : " + sumXY);
 }
 
-
-
-
-
+*/
 
 
 
