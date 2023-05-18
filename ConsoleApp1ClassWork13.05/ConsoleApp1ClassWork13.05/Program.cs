@@ -1,6 +1,7 @@
 ﻿//1. Add meeting - without walidation
 //0. Exit calendar
 //2. Show all meeting
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.IO.Enumeration;
 using static System.Net.Mime.MediaTypeNames;
@@ -8,12 +9,9 @@ using static System.Net.Mime.MediaTypeNames;
 Typle<string, int ,string, string>[] meetings = new Typle<string, int, string, string>[0];
 const string FileName = "meetings.csv";
 
-void SaveToFile()
-{
-
-}
 void ShowAll()
 {
+    Console.WriteLine($"Start time ", 25);
     Console.WriteLine($"Duration ", 25);
     Console.WriteLine($"Room ", 25);
     Console.WriteLine($"Name ", 25);
@@ -22,10 +20,12 @@ void ShowAll()
     foreach (var line in fileContent)
     {
         var meetingContent = line.Split(',');
-        Console.WriteLine($"{meetingContent[0], 20}"
-            +$"{meetingContent [1], 20}"
-            + $"{meetingContent[2], 20}");
+        Console.WriteLine($"{meetingContent[0], 20}"//date
+            +$"{meetingContent[1], 20}" //duration
+            + $"{meetingContent[2], 20}"//room
+            + $"{meetingContent[3], 20}");//name
     }
+    
     Console.ReadLine();
 }
  bool GetRoom (DateTime dateTime, string roomName)
@@ -46,13 +46,14 @@ void ShowAll()
     return false;
 }
 
-void ShowError (string error)
+void ShowError (string error) // change to exception
 { 
     Console.ForegroundColor = ConsoleColor.Red;
    
     Console.WriteLine(error);
     
     Console.ReadLine ();
+    
     
 }
  void AddMeeting () // meeting stsrt time
@@ -109,11 +110,27 @@ void ShowError (string error)
         ShowError("Invalid value of Name");
         return;
     }
-    
-
+    Array.Resize(ref meetings, meetings.Length + 1);
     
     File.AppendAllText(FileName, $"{startTime}, {duration}, {room}, {name}" + Environment.NewLine);
+   
 }
+void Delete () 
+{
+
+    string[] readText = File.ReadAllLines(FileName);
+    
+  
+    foreach (string line in readText)
+    {
+        Console.WriteLine($" Line  {line}");
+    }
+    Console.ReadLine();
+}
+
+
+
+
 void Exit ()
 {
     Environment.Exit(0);
@@ -121,9 +138,11 @@ void Exit ()
 void Menu()
 {
     Console.Clear ();
+    Console.WriteLine("3. Delete meeting");
     Console.WriteLine("2. Show all meetings");
     Console.WriteLine("1. Add mitting");
     Console.WriteLine("0. Exit calendar");
+    
 }
 while (true)
 {
@@ -139,6 +158,9 @@ while (true)
             break;
             case ConsoleKey.D2:
             ShowAll ();
+            break;
+            case ConsoleKey.D3:
+            Delete();
             break;
         default:
             break;
