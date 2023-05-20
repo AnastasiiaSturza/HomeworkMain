@@ -3,7 +3,9 @@
 //2. Show all meeting
 using Microsoft.VisualBasic.FileIO;
 using System;
+using System.ComponentModel.Design;
 using System.IO.Enumeration;
+using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
 Typle<string, int ,string, string>[] meetings = new Typle<string, int, string, string>[0];
@@ -119,17 +121,70 @@ void Delete ()
 {
 
     string[] readText = File.ReadAllLines(FileName);
+    Console.WriteLine(" Wich string delete");
+    string delete = Console.ReadLine();
     
-  
-    foreach (string line in readText)
+    foreach (string str in readText)
     {
-        Console.WriteLine($" Line  {line}");
+        
+        if (str.Contains(delete))
+
+        {
+            StringBuilder sb = new StringBuilder(str);
+            sb.Clear();
+            Console.WriteLine("line ", str);
+            /* string? newLine = Console.ReadLine();
+             StringBuilder deleteLine = new StringBuilder(delete);
+             deleteLine.Remove(0, delete.Length);
+             Console.WriteLine("Add another");
+             string? newLine2 = Console.ReadLine();
+             StringBuilder changeLine = new StringBuilder(newLine2);
+             changeLine.Clear();
+             changeLine.Append(newLine2);
+             //var replace = line.Replace(line, newLine);
+             // Console.WriteLine(line);*/
+            break;
+        }
+        else
+        {
+            Console.WriteLine("This date is not listed");
+        }
+        
     }
+
     Console.ReadLine();
 }
 
+/*void BinarSearch(Array readText , string delete)
+{
+    Array.Sort(readText);
+    int index = Array.BinarySearch(readText, "vvv");
+    ShowWhere(readText, index);
+    Console.ReadLine() ;
+    index = Array.BinarySearch(readText, delete); 
+    ShowWhere(readText, index);
+}*/
 
+ /* void ShowWhere <Array>(Array[] array, int index)
+{
+    if (index < 0)
+    {
+        index = ~index;
+        Console.WriteLine("Not found");
+        if (index == index)
+            Console.WriteLine("Beginning of array");
+        else Console.WriteLine("{0} and ", array[index - 1]);
 
+        if (index == array.Length)
+            Console.WriteLine("end of array");
+        else
+            Console.WriteLine("{0}", index);
+    }
+    else
+    {
+        Console.WriteLine("Found at index {0} ", index);
+    }
+}*/
 
 void Exit ()
 {
@@ -138,6 +193,7 @@ void Exit ()
 void Menu()
 {
     Console.Clear ();
+    Console.WriteLine("4.Binar searching");
     Console.WriteLine("3. Delete meeting");
     Console.WriteLine("2. Show all meetings");
     Console.WriteLine("1. Add mitting");
@@ -162,6 +218,8 @@ while (true)
             case ConsoleKey.D3:
             Delete();
             break;
+            case ConsoleKey.D4 :
+            
         default:
             break;
     }
