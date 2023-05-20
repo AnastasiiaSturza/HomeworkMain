@@ -137,6 +137,7 @@ void Delete ()
                 continue;
 
             }
+            readTextNew = readText;
         }
         for (int i = 0;i < readTextNew.Length; i++)
         Console.WriteLine(readTextNew[i]);
