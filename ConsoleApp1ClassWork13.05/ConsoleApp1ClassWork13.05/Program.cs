@@ -125,6 +125,7 @@ void Delete ()
     Console.WriteLine(" Wich string delete");
     string delete = Console.ReadLine();
     string[] readTextNew = new string[readText.Length - 1];
+    int j = 0;
     for (int i = 0; i < readText.Length; i++ )
     {
        
@@ -132,10 +133,10 @@ void Delete ()
        {
             continue;
        }
-        int j = 0;
+        
         readTextNew[j] = readText[i];
         Console.WriteLine(readTextNew[j]);
-
+        j++;
     }
    
 
