@@ -4,6 +4,7 @@
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.ComponentModel.Design;
+using System.Globalization;
 using System.IO.Enumeration;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
@@ -124,33 +125,31 @@ void Delete ()
     Console.WriteLine(" Wich string delete");
     string delete = Console.ReadLine();
     
-    foreach (string str in readText)
-    {
-        
-        if (str.Contains(delete))
+    
+    
+        string[] readTextNew = new string[readText.Length - 1];
+        for (int i = 0; i < readTextNew.Length; i++)
+        {
+            if (readText.Contains(delete))
 
-        {
-            StringBuilder sb = new StringBuilder(str);
-            sb.Clear();
-            Console.WriteLine("line ", str);
-            /* string? newLine = Console.ReadLine();
-             StringBuilder deleteLine = new StringBuilder(delete);
-             deleteLine.Remove(0, delete.Length);
-             Console.WriteLine("Add another");
-             string? newLine2 = Console.ReadLine();
-             StringBuilder changeLine = new StringBuilder(newLine2);
-             changeLine.Clear();
-             changeLine.Append(newLine2);
-             //var replace = line.Replace(line, newLine);
-             // Console.WriteLine(line);*/
-            break;
+            {
+                continue;
+            }
+
+            else
+            {
+                Console.WriteLine("This date is not listed");
+            }
+
+            Console.WriteLine("line " , readTextNew[i]);
         }
-        else
-        {
-            Console.WriteLine("This date is not listed");
-        }
+       
+
         
-    }
+       
+    
+   
+
 
     Console.ReadLine();
 }
