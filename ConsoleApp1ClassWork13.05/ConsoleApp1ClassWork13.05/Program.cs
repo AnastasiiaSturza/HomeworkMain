@@ -124,23 +124,17 @@ void Delete ()
     string[] readText = File.ReadAllLines(FileName);
     Console.WriteLine(" Wich string delete");
     string delete = Console.ReadLine();
-    
-    foreach (string str in readText)
+    string[] readTextNew = new string[readText.Length - 1];
+    for (int i = 0; i < readText.Length; i++ )
     {
-        string[] readTextNew = new string[readText.Length - 1];
-        for (int i = 0; i < readTextNew.Length; i++)
-        {
-
-            if (str.Contains(delete))
-
-            {
-                continue;
-
-            }
-            readTextNew = readText;
-        }
-        for (int i = 0;i < readTextNew.Length; i++)
-        Console.WriteLine(readTextNew[i]);
+       
+       if (readText[i].Contains(delete))
+       {
+            continue;
+       }
+        int j = 0;
+        readTextNew[j] = readText[i];
+        Console.WriteLine(readTextNew[j]);
 
     }
    
