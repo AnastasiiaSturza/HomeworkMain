@@ -125,29 +125,23 @@ void Delete ()
     Console.WriteLine(" Wich string delete");
     string delete = Console.ReadLine();
     
-    
-    
+    foreach (string str in readText)
+    {
         string[] readTextNew = new string[readText.Length - 1];
         for (int i = 0; i < readTextNew.Length; i++)
         {
-            if (readText.Contains(delete))
+
+            if (str.Contains(delete))
 
             {
                 continue;
-            }
 
-            else
-            {
-                Console.WriteLine("This date is not listed");
             }
-
-            Console.WriteLine("line " , readTextNew[i]);
         }
-       
+        for (int i = 0;i < readTextNew.Length; i++)
+        Console.WriteLine(readTextNew[i]);
 
-        
-       
-    
+    }
    
 
 
