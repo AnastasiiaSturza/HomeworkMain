@@ -13,7 +13,9 @@ Typle<string, int ,string, string>[] meetings = new Typle<string, int, string, s
 const string FileName = "meetings.csv";
 
 void ShowAll()
+
 {
+   
     Console.WriteLine($"Start time ", 25);
     Console.WriteLine($"Duration ", 25);
     Console.WriteLine($"Room ", 25);
@@ -32,7 +34,7 @@ void ShowAll()
     Console.ReadLine();
 }
  bool GetRoom (DateTime dateTime, string roomName)
-{
+ {
     var fileContent = File.ReadAllLines(FileName);
     foreach (var line in fileContent)
     {
@@ -47,18 +49,16 @@ void ShowAll()
     }
 
     return false;
-}
+ }
 
-void ShowError (string error) // change to exception
+void ShowExxceptionError (string error) 
 { 
     Console.ForegroundColor = ConsoleColor.Red;
+    throw new Exception(error);
    
-    Console.WriteLine(error);
-    
-    Console.ReadLine ();
-    
-    
+   
 }
+
  void AddMeeting () // meeting stsrt time
 {
     Console.WriteLine(" Start time : ");
@@ -66,51 +66,49 @@ void ShowError (string error) // change to exception
     var dateParseResult = DateTime.TryParse(Console.ReadLine(), out var startTime);
     if (!dateParseResult)
     {
-
-        ShowError("Error! Invalid date");
+        ShowExxceptionError("Error! Invalid date");
         return;
     }
+
     Console.WriteLine("Duration in minutes: ");
     var durationParseResult = int.TryParse(Console.ReadLine(), out var duration);
     if (!durationParseResult)
     {
-        ShowError("Error invalid value");
+        ShowExxceptionError("Error invalid value");
         return;
     }
-
-
+    
     Console.WriteLine("Room: ");
     var room = Console.ReadLine();
     if (string.IsNullOrEmpty(room))
     {
-        ShowError("Error empty room");
+        ShowExxceptionError("Error empty room");
         return;
     }
     int roomNumbMax = 3;
     if (room.Length > roomNumbMax)
     {
-        ShowError ($"Error!Room number should not be longer than {roomNumbMax}");
+        ShowExxceptionError ($"Error!Room number should not be longer than {roomNumbMax}");
         return;
     }
     var isBusy = GetRoom(startTime, room);
     if (isBusy)
     {
-        ShowError("Room is busy in this time");
+        ShowExxceptionError("Room is busy in this time");
         return;
     }
-
-
+    
     Console.WriteLine("Name: ");
     var name = Console.ReadLine ();
     if (string.IsNullOrEmpty(name))
     {
-        ShowError("Empty Name");
+        ShowExxceptionError("Empty Name");
         return;
     }
     int nameMaxValue = 20;
     if (name.Length > nameMaxValue)
     {
-        ShowError("Invalid value of Name");
+        ShowExxceptionError("Invalid value of Name");
         return;
     }
     Array.Resize(ref meetings, meetings.Length + 1);
@@ -135,12 +133,11 @@ void Delete ()
        }
         
         readTextNew[j] = readText[i];
-        Console.WriteLine(readTextNew[j]);
+      //  Console.WriteLine(readTextNew[j]);
         j++;
     }
-   
-
-
+    
+    File.WriteAllLines(FileName, readTextNew);
     Console.ReadLine();
 }
 
@@ -182,7 +179,8 @@ void Exit ()
 void Menu()
 {
     Console.Clear ();
-    Console.WriteLine("4.Binar searching");
+    Console.ForegroundColor = ConsoleColor.White;
+    //Console.WriteLine("4.Binar searching");
     Console.WriteLine("3. Delete meeting");
     Console.WriteLine("2. Show all meetings");
     Console.WriteLine("1. Add mitting");
@@ -191,26 +189,35 @@ void Menu()
 }
 while (true)
 {
-    Menu();
-    var keyInfo = Console.ReadKey ();
-    switch (keyInfo.Key)
+    try
     {
-        case ConsoleKey.D0:
-            Exit(); 
-            break;
+        Menu();
+        var keyInfo = Console.ReadKey();
+        switch (keyInfo.Key)
+        {
+            case ConsoleKey.D0:
+                Exit();
+                break;
             case ConsoleKey.D1:
-            AddMeeting ();
-            break;
+                AddMeeting();
+                break;
             case ConsoleKey.D2:
-            ShowAll ();
-            break;
+                ShowAll();
+                break;
             case ConsoleKey.D3:
-            Delete();
-            break;
-            case ConsoleKey.D4 :
-            
-        default:
-            break;
+                Delete();
+                break;
+           //case ConsoleKey.D4:
+
+            default:
+                break;
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+       // Console.WriteLine(ex.StackTrace);
+        Console.ReadLine();
     }
 }
 
