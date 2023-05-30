@@ -13,29 +13,49 @@ var cathedra = new Cathedra
         },
         new Teacher
         {
-            Name= "Marry"
+            Name = "Marry"
         }
     },
     Groups = new[]
     {
         new Group
         {
-            Name = "a1"
-        }
-    },
-    Students = new[]
-    {
-        new Student
-        {
+            Name = "a1",
+            Lessons = new[]
+            {
+                new Lesson
+                {
+                    Name = "Math"
+                }
+            }
+        },
 
-        }
-    },
-    Lessons = new[]
-    {
-        new Lesson
+        new Group
         {
-            Name = "Math"
+        Name ="A2",
+
+        Lessons = new[]
+        {
+            new Lesson
+            {
+                Name = "English"
+            }
+        },
+
+        Students = new[]
+        {
+            new Student
+            {
+            Name = "Andriy"
+            }
+        }
         }
     }
 };
-Console.WriteLine(cathedra);
+foreach (var group in cathedra.Groups)
+{
+    Console.WriteLine($"group name  : {group.Name}");
+
+    Console.WriteLine();
+}
+
