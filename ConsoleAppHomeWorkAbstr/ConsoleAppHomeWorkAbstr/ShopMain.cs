@@ -28,4 +28,12 @@ namespace ConsoleAppHomeWorkAbstr
 
 
     }
+
+    interface IShop
+    {
+        public string IMessege (string str)
+        {
+            return $"Thnk you";
+        }
+    }
 }

@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppHomeWorkAbstr
 {
-    public class Reception
+    public class Reception : IShop
     {
-        public string Descriptions { get; }
+        public string Descriptions { get; set; }
 
         public string Products { get; set; }
 
-        public int ProductQuanty { get; set; }
+        public int ProductQuantity { get; set; }
 
         public double ProductPrice { get; set; }
 
         public Reception() { }
-        public Reception(string descriptions, string products, int productquanty, double productprice)
+        public Reception(string description, string products, int productquanty, double productprice)
         {
-            Descriptions = "Reception";
+            Descriptions = description;
+           
             Products = products;
-            ProductQuanty = productquanty;
+            ProductQuantity = productquanty;
             ProductPrice = productprice;
         }
 
-        public string Description ()
+        public string DescriptionRecept ()
         {
-            return $"{Description},name of products {Products} , product price : {ProductPrice}, " +
-                $"quanty :{ProductQuanty}. And {(ProductQuanty * ProductPrice)}";
+            return $"{Descriptions},name of products {Products} , product price : {ProductPrice} $, " +
+                $"quanty :{ProductQuantity}. And total price: {(ProductQuantity * ProductPrice)} $";
         }
     }
 }

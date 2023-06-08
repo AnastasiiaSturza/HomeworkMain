@@ -37,6 +37,8 @@ namespace ConsoleAppHomeWorkAbstr
             Products = addProducts;
         }
 
+        
+
         public void RemoveAllProduct()
         {
             Product[] removeAllProduct = new Product[Products.Length - 1];
