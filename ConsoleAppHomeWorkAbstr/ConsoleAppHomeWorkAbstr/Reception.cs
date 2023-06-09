@@ -31,5 +31,11 @@ namespace ConsoleAppHomeWorkAbstr
             return $"{Descriptions},name of products {Products} , product price : {ProductPrice} $, " +
                 $"quanty :{ProductQuantity}. And total price: {(ProductQuantity * ProductPrice)} $";
         }
+
+        public string MinValue (IShop value)
+        {
+            value.IMessegeMinValue();
+            return $"Can`t be less than one";
+        }
     }
 }

@@ -10,12 +10,12 @@ namespace ConsoleAppHomeWorkAbstr
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        
+
         public AllProduct[] AllProducts { get; set; } = new AllProduct[0];
-        public Buyer[] Buyers { get; set; }= new Buyer[0];
+        public Buyer[] Buyers { get; set; } = new Buyer[0];
         public Reception[] Receptions { get; set; } = new Reception[0];
 
-        public ShopMain (string name, string description, AllProduct[] products, Buyer[] buyers, Reception[] receptions)
+        public ShopMain(string name, string description, AllProduct[] products, Buyer[] buyers, Reception[] receptions)
         {
             Name = name;
             Description = description;
@@ -24,16 +24,24 @@ namespace ConsoleAppHomeWorkAbstr
             Receptions = receptions;
         }
         public ShopMain() { }
-        
+
 
 
     }
 
-    interface IShop
+    public interface IShop
     {
-        public string IMessege (string str)
+        public string IMessegeMinValue()
         {
-            return $"Thnk you";
+            return $"Error";
+        }
+        
+    }
+    public interface IbuyersInform
+    {
+       void IBuyersAdress()
+        {
+            Console.WriteLine();
         }
     }
 }

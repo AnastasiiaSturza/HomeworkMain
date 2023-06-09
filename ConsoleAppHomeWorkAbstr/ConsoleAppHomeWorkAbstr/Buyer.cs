@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppHomeWorkAbstr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppHomeWorkAbstr
 {
-    public class Buyer
+    public class Buyer : IbuyersInform
     {
         public string FullName { get; set; }
         public string Adress { get; set; }
@@ -39,16 +40,30 @@ namespace ConsoleAppHomeWorkAbstr
             Receptions = addReception;
         }
 
-
-
+        public virtual string BuyersInform (IbuyersInform adress)
+        {
+            adress.IBuyersAdress();
+            return $"Add correct adress";
+        }
+        
     }
 
-    public class Stuff : Buyer
+
+
+}
+
+    public class Stuff : Buyer , IbuyersInform
     {
         public Stuff() { }
         public Stuff(string fullName)
         {
             FullName = fullName;
         }
+
+    public override string BuyersInform (IbuyersInform messege)
+    {
+       messege.IBuyersAdress();
+        return $"Add adress and FullName";
     }
 }
+

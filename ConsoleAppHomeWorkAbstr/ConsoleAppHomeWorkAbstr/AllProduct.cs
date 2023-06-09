@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppHomeWorkAbstr
 {
-    public class AllProduct : Product
+    public class AllProduct : Product, IShop
     {
         public string Name { get; set; }
         public int Quanty { get; set; }
@@ -23,7 +23,7 @@ namespace ConsoleAppHomeWorkAbstr
             Quanty = quanty;
             Price = price;
         }
-        public void AddAllProduct(Product product)   // method for add new products to Products
+        public void AddProduct(Product product)   // method for add new products to Products
         {
             Product[] addProducts = new Product[Products.Length + 1];
 
@@ -39,14 +39,28 @@ namespace ConsoleAppHomeWorkAbstr
 
         
 
-        public void RemoveAllProduct()
+        public void RemoveProduct() // can be by name: if(products[i].Contain(Name)){continue;}
         {
             Product[] removeAllProduct = new Product[Products.Length - 1];
-            for (int i = 0;i < Products.Length-1;i--) 
+            for (int i = 0;i < removeAllProduct.Length;i++) 
             {
                 removeAllProduct[i] = Products[i];
             }
             Products = removeAllProduct;
+        }
+
+        public string FullInfo()
+        {
+            return $"Product: {Name}, quanty: {Quantity}, price : {Price} $ ";
+        }
+
+
+        public string MesegeMinValue(IShop productMessege )
+        {
+            productMessege.IMessegeMinValue();
+
+            return $"Can`t be less than one";
+
         }
     }
 }
